@@ -101,12 +101,12 @@ class Contenedor {
 	}
 }
 
-const productos = new Contenedor()
+const productos = new Contenedor(productsList)
 
 // productos.save(product1)
 // productos.save(product2)
 // productos.save(product3)
 // productos.getById(2)
-// productos.getAll()
+productos.getAll()
 // productos.deleteById(1)
 // productos.deleteAll()

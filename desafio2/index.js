@@ -57,16 +57,16 @@ class Contenedor {
 	getById(id) {
 		let idReturned
 
-		if (productsList) {
-			idReturned = productsList.find((prod) => prod.id === id)
+		if (this.nombreArchivo) {
+			idReturned = this.nombreArchivo.find((prod) => prod.id === id)
 			console.log(idReturned || null)
 		}
 	}
 
 	//devuelve un array con los objetos presentes en el archivo
 	getAll() {
-		if (productsList) {
-			const allProducts = [...productsList]
+		if (this.nombreArchivo) {
+			const allProducts = [...this.nombreArchivo]
 			console.log(allProducts)
 		} else {
 			console.log('aún hay productos en el archivo')
@@ -76,20 +76,20 @@ class Contenedor {
 	//Elimina del archivo el objeto con el id buscado
 	async deleteById(removeId) {
 		try {
-			const newData = productsList.findIndex((prod) =>
+			const newData = this.nombreArchivo.findIndex((prod) =>
 				prod.id === removeId ? true : false
 			)
 
-			const removed = productsList.splice(newData, 1)
+			const removed = this.nombreArchivo.splice(newData, 1)
 			console.log(removed)
 
 			await fs.promises.writeFile(
 				'./productos.json',
-				JSON.stringify(productsList, null, 2),
+				JSON.stringify(this.nombreArchivo, null, 2),
 				'utf-8'
 			)
 
-			console.log(productsList)
+			console.log(this.nombreArchivo)
 		} catch (err) {
 			throw new Error(`esto es un error: ${err.message}`)
 		}

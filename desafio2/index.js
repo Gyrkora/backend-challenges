@@ -97,7 +97,11 @@ class Contenedor {
 
 	//Elimina todos los objetos presentes en el archivo
 	async deleteAll() {
-		await fs.promises.writeFile('./productos.json', '[]', 'utf-8')
+		try {
+			await fs.promises.writeFile('./productos.json', '[]', 'utf-8')
+		} catch (err) {
+			throw new Error(`esto es un error: ${err.message}`)
+		}
 	}
 }
 
@@ -107,6 +111,6 @@ const productos = new Contenedor(productsList)
 // productos.save(product2)
 // productos.save(product3)
 // productos.getById(2)
-productos.getAll()
+// productos.getAll()
 // productos.deleteById(1)
 // productos.deleteAll()

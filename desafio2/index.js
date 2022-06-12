@@ -24,6 +24,16 @@ class Contenedor {
 		this.nombreArchivo = nombreArchivo
 	}
 
+	async writeProds() {
+		await fs.writeFile(
+			'./productos.txt',
+			JSON.stringify(productsList, null, 2),
+			(err) => {
+				if (err) throw new Error(`No se puede leer el archivo> ${err.message}`)
+			}
+		)
+	}
+
 	//recibe un objeto, lo guarda en el archivo y devuelve el id asignado
 	async save(obj) {
 		try {
@@ -114,3 +124,4 @@ const productos = new Contenedor(productsList)
 // productos.getAll()
 // productos.deleteById(1)
 // productos.deleteAll()
+// productos.writeProds()
